@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/GYM',{useNewUrlParser: true});
+const uri = "mongodb+srv://admin:Aa123456!@cluster0-vjdko.mongodb.net/GYM?retryWrites=true";
+mongoose.connect(uri,{useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error',console.error.bind('mongo connection error:'));
