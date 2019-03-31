@@ -14,6 +14,7 @@ app.all("*",(req, res, next)=>{
     next();
 });
 
+app.use("/account", ROUTES.AccountRouter);
 app.use("/notice", ROUTES.NoticeRouter);
 app.use("/club", ROUTES.ClubRouter);
 app.listen(3001);
