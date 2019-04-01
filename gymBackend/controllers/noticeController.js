@@ -6,7 +6,8 @@ class noticeController{
         let date = new Date();
         let notice = new Notice({
             title: title,
-            detail: detail
+            detail: detail,
+            date: date
         });
         try{
             let doc = await notice.save();

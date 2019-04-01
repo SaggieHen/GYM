@@ -13,7 +13,7 @@ async function club(request, response, next){
     catch(err){}
 }
 
-async function club(request, response, next){
+async function createClub(request, response, next){
     try{
         let name = request.body["name"];
         let lat = request.body["lat"];
@@ -29,5 +29,5 @@ async function club(request, response, next){
     }
 }
 router.get("/",club);
-router.post("/",club);
+router.post("/",createClub);
 module.exports = router;

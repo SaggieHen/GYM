@@ -13,7 +13,7 @@ async function notice(request, response, next){
     catch(err){}
 }
 
-async function notice(request, response, next){
+async function createNotice(request, response, next){
     try{
         let title = request.body["title"];
         let detail = request.body["detail"];
@@ -28,5 +28,5 @@ async function notice(request, response, next){
     }
 }
 router.get("/",notice);
-router.post("/",notice);
+router.post("/",createNotice);
 module.exports = router;
