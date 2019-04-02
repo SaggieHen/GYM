@@ -50,15 +50,15 @@ async function login(request, response, next){
                 message: 'Auth failed'
             });
         }else{
-            const privatekey = fs.readFileSync('C:\Users\Administrator\Desktop\bisli\backend\keys\privateKey','utf8');
+            const privatekey = fs.readFileSync('./keys/private.key','utf8');
             let token = jwt.sign({
                 email: account[0].email,
                 userId:account[0]._id 
             }, privatekey, {expiresIn : "1h", algorithm : "RS256"});
 
-            response.json(
-                token
-            );
+            return response.status(200).json({
+                message: token
+            });
         }
     }
     catch(err){

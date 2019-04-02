@@ -17,4 +17,5 @@ app.all("*",(req, res, next)=>{
 
 app.use("/account", ROUTES.AccountRouter);
 app.use("/restaurant", ROUTES.RestaurantRouter);
+app.use("/reservation", ROUTES.ReservationRouter);
 app.listen(3001);

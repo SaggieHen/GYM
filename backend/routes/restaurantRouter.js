@@ -15,10 +15,14 @@ async function restaurant(request, response, next){
 
 async function createRestaurant(request, response, next){
     try{
-        let title = request.body["title"];
+        let name = request.body["name"];
         let detail = request.body["detail"];
+        let location = request.body["location"];
+        let accountEmail = request.body["accountEmail"];
 
-        let restaurant = await restaurantController.createRestaurant(title,detail);
+        let accountId = (await accountController.getAccountByEmail(accountEmail))[0].id;
+        
+        let restaurant = await restaurantController.createRestaurant(name,detail,location.lat,location.lon, accountId);
         response.json(
             restaurant
         );

@@ -13,6 +13,11 @@ const restaurantSchema = new Schema({
     location:{
         lat: Number,
         lon: Number
+    },
+    accountId:{ 
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'account'
     }
 });
 
