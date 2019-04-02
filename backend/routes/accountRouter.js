@@ -1,5 +1,7 @@
 const express = require("express");
 var bcrypt =require("bcryptjs");
+var jwt = require('jsonwebtoken');
+const fs = require("fs");
 var router = express.Router();
 var accountController = require("../controllers/accountController");
 
@@ -39,13 +41,25 @@ async function login(request, response, next){
         if(account.length < 1){
             return response.status(401).json({
                 message: 'Auth failed'
-            });
+            },);
         }
 
-        passValidation = await 
-        response.json(
-            account
-        );
+        passValidation = await bcrypt.compare(password,account[0].password);
+        if(!passValidation){
+            return response.status(401).json({
+                message: 'Auth failed'
+            });
+        }else{
+            const privatekey = fs.readFileSync('C:\Users\Administrator\Desktop\bisli\backend\keys\privateKey','utf8');
+            let token = jwt.sign({
+                email: account[0].email,
+                userId:account[0]._id 
+            }, privatekey, {expiresIn : "1h", algorithm : "RS256"});
+
+            response.json(
+                token
+            );
+        }
     }
     catch(err){
         next(err);
